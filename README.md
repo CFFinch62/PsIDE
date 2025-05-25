@@ -221,7 +221,7 @@ A modular interpreter for executing pseudocode based on Cambridge International 
 
 ### GUI Version
 ```bash
-python main.py
+python pside.py
 ```
 
 ### Using Components Independently
