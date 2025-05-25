@@ -1,0 +1,111 @@
+// Sorting algorithms demonstration
+// This program demonstrates bubble sort and selection sort
+
+// Bubble sort implementation
+DEF bubble_sort(arr) DO
+    n = len(arr)
+    
+    FOR i = 0 TO n-1 STEP 1
+        // Last i elements are already sorted
+        FOR j = 0 TO n-i-2 STEP 1
+            // Swap if the element found is greater than the next element
+            IF arr[j] > arr[j+1] THEN
+                // Swap arr[j] and arr[j+1]
+                temp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = temp
+            ENDIF
+        NEXT j
+    NEXT i
+    
+    RETURN arr
+
+// Selection sort implementation
+DEF selection_sort(arr) DO
+    n = len(arr)
+    
+    FOR i = 0 TO n-1 STEP 1
+        // Find the minimum element in the unsorted part
+        min_idx = i
+        
+        FOR j = i+1 TO n-1 STEP 1
+            IF arr[j] < arr[min_idx] THEN
+                min_idx = j
+            ENDIF
+        NEXT j
+        
+        // Swap the found minimum element with the first element
+        temp = arr[i]
+        arr[i] = arr[min_idx]
+        arr[min_idx] = temp
+    NEXT i
+    
+    RETURN arr
+
+// Helper function to get the length of an array
+DEF len(arr) DO
+    count = 0
+    
+    WHILE count < 1000 DO  // Safety limit
+        // Try to access the element at position count
+        // If it exists, increment count, otherwise break
+        IF count >= arr.length THEN
+            BREAK
+        ENDIF
+        
+        count = count + 1
+    ENDWHILE
+    
+    RETURN count
+
+// Generate a random array (simulated)
+DEF generate_random_array(size) DO
+    arr = []
+    
+    FOR i = 0 TO size-1 STEP 1
+        // Generate a "random" value based on i
+        value = (i * 17) % 100
+        arr = arr + [value]
+    NEXT i
+    
+    RETURN arr
+
+// Main program
+PRINT "Sorting Algorithms Demonstration"
+PRINT "-------------------------------"
+
+// Create an array to sort
+array_size = INPUT "Enter the size of the array to sort: "
+array_size = array_size  // Convert to number if needed
+
+// Generate a random array
+original_array = generate_random_array(array_size)
+PRINT "Original array:", original_array
+
+// Create copies of the array for each sorting algorithm
+bubble_array = original_array  // In a real language, we'd make a proper copy
+selection_array = original_array  // Same here
+
+// Sort using bubble sort
+PRINT "Sorting with bubble sort..."
+sorted_bubble = bubble_sort(bubble_array)
+PRINT "Bubble sort result:", sorted_bubble
+
+// Sort using selection sort
+PRINT "Sorting with selection sort..."
+sorted_selection = selection_sort(selection_array)
+PRINT "Selection sort result:", sorted_selection
+
+// Verify if both algorithms produced the same result
+are_equal = TRUE
+FOR i = 0 TO len(sorted_bubble)-1 STEP 1
+    IF sorted_bubble[i] != sorted_selection[i] THEN
+        are_equal = FALSE
+    ENDIF
+NEXT i
+
+IF are_equal THEN
+    PRINT "Both sorting algorithms produced the same result."
+ELSE
+    PRINT "Warning: The sorting algorithms produced different results!"
+ENDIF 

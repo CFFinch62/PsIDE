@@ -1,0 +1,14 @@
+{
+    "editor": {
+        "font_family": "Monospace",
+        "font_size": 12,
+        "background_color": "#000066",
+        "text_color": "#fce94f"
+    },
+    "output": {
+        "font_family": "Monospace",
+        "font_size": 11,
+        "background_color": "#000066",
+        "text_color": "#33d17a"
+    }
+}

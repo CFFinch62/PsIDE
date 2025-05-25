@@ -1,0 +1,16 @@
+// Test file for identifiers with underscores
+DECLARE test_var : INTEGER
+DECLARE test_var2 : INTEGER
+DECLARE my_string : STRING
+
+test_var ← 42
+test_var2 ← 10
+my_string ← "Hello_with_underscores!"
+
+PRINT "test_var = "
+PRINT test_var
+PRINT "\ntest_var2 = "
+PRINT test_var2
+PRINT "\nmy_string = "
+PRINT my_string
+PRINT "\n" 

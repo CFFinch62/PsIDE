@@ -1,0 +1,60 @@
+// Fibonacci sequence example
+// This program calculates the nth Fibonacci number
+
+// Define a function to calculate Fibonacci recursively
+DEF fibonacci(n) DO
+    // Base cases
+    IF n <= 1 THEN
+        RETURN n
+    ENDIF
+    
+    // Recursive case: fib(n) = fib(n-1) + fib(n-2)
+    RETURN fibonacci(n-1) + fibonacci(n-2)
+
+// Define a function to calculate Fibonacci iteratively (more efficient)
+DEF fibonacci_iterative(n) DO
+    IF n <= 1 THEN
+        RETURN n
+    ENDIF
+    
+    a = 0
+    b = 1
+    
+    FOR i = 2 TO n STEP 1
+        temp = a + b
+        a = b
+        b = temp
+    NEXT i
+    
+    RETURN b
+
+// Main program
+PRINT "Fibonacci Sequence Calculator"
+PRINT "--------------------------"
+
+// Get input from user
+n = INPUT "Enter a position (n) to find the Fibonacci number: "
+
+// Calculate and display both results
+PRINT "Calculating Fibonacci(", n, ") recursively..."
+result_recursive = fibonacci(n)
+PRINT "Result (recursive): ", result_recursive
+
+PRINT "Calculating Fibonacci(", n, ") iteratively..."
+result_iterative = fibonacci_iterative(n)
+PRINT "Result (iterative): ", result_iterative
+
+// Show a warning for large values of n with the recursive method
+IF n > 20 THEN
+    PRINT "Note: The recursive method is much slower for large values of n."
+ENDIF
+
+// Calculate and print the first 10 Fibonacci numbers
+PRINT "First 10 Fibonacci numbers:"
+fibonacci_list = []
+
+FOR i = 0 TO 9 STEP 1
+    fibonacci_list = fibonacci_list + [fibonacci_iterative(i)]
+NEXT i
+
+PRINT fibonacci_list 
